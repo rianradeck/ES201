@@ -7,7 +7,7 @@ of SimpleScalar, LLC (info@simplescalar.com).
 
 sim: command line: /usr/ensta/pack/simplescalar-3v0d/simplesim-3.0/sim-profile -brprof true -iclass true -segprof true -redir:sim ./output/sha_driver-sim-prof.txt -redir:prog ./output/sha_driver-out.txt sha_driver.ss input_small.asc 
 
-sim: simulation started @ Mon Mar 10 14:19:57 2025, options follow:
+sim: simulation started @ Wed Mar 12 18:22:50 2025, options follow:
 
 sim-profile: This simulator implements a functional simulator with
 profiling support.  Run with the `-h' flag to see profiling options
@@ -119,9 +119,9 @@ ld_stack_size                 16384 # program initial stack size
 ld_prog_entry            0x00400140 # program entry point (initial PC)
 ld_environ_base          0x7fff8000 # program environment base address address
 ld_target_big_endian              0 # target executable endian-ness, non-zero if big endian
-mem.page_count                   40 # total number of pages allocated
-mem.page_mem                   160k # total size of memory pages allocated
-mem.ptab_misses                  40 # total first level page table misses
-mem.ptab_accesses          58895438 # total page table accesses
+mem.page_count                   39 # total number of pages allocated
+mem.page_mem                   156k # total size of memory pages allocated
+mem.ptab_misses                  39 # total first level page table misses
+mem.ptab_accesses          58892924 # total page table accesses
 mem.ptab_miss_rate           0.0000 # first level page table miss rate
 
