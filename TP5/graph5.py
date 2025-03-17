@@ -14,7 +14,8 @@ def extract_num_cycles(file_path):
             if re.match(r"system\.cpu\d*\.numCycles", line):
                 parts = line.split()
                 print(f"Found {parts[0]}: ", parts[1], " in ", file_path)
-                sum += int(parts[1])  # Extract the value
+                return int(parts[1])
+                # sum += int(parts[1])  # Extract the value
     return sum
 
 def collect_data(base_path):
@@ -45,26 +46,27 @@ def collect_data(base_path):
 def plot_data(thread_counts, width_counts, num_cycles, base_path):
     fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(thread_counts, width_counts, num_cycles, c='r', marker='o')
+    speedup = [num_cycles[0] / cycles for cycles in num_cycles]
+    ax.scatter(thread_counts, width_counts, speedup, c='r', marker='o')
 
     ax.set_xlabel("Number of Threads")
     ax.set_ylabel("Width")
-    ax.set_zlabel("CPU Cycles Simulated")
-    ax.set_title("3D Plot of CPU Cycles vs Threads and Width")
+    ax.set_zlabel("Estimated Speedup")
+    ax.set_title("3D Plot of Speedup vs Threads and Width")
 
-    save_path = os.path.join(base_path, "q9_3d_plot.png")
+    save_path = os.path.join(base_path, "q10_3d_plot.png")
     plt.savefig(save_path)
     plt.close()
     
     # Prepare data for tabular representation
-    headers = ["Number of Threads", "Width", "CPU Cycles Simulated"]
-    table_data = list(zip(thread_counts, width_counts, num_cycles))
+    headers = ["Number of Threads", "Width", "Estimated Speedup"]
+    table_data = list(zip(thread_counts, width_counts, speedup))
     
     # Generate LaTeX table
     latex_table = tabulate(table_data, headers=headers, tablefmt="latex")
     
     # Save LaTeX table to a file
-    latex_file_path = os.path.join(base_path, "q9_table.tex")
+    latex_file_path = os.path.join(base_path, "q10_table.tex")
     with open(latex_file_path, "w") as latex_file:
         latex_file.write(latex_table)
     
